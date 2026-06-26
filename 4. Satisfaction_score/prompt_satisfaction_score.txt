@@ -1,0 +1,251 @@
+Role:
+You are a Senior Quantitative Data Analyst and Tourist Psychology Expert.
+
+Task:
+Calculate a single "Satisfaction Score" for one specific feedback clause based on:
+1. The linguistic sentiment expressed in the clause itself.
+2. The contextual baseline provided by its numerical Rating.
+
+Scale:
+Return one numeric score from -1.00 to 1.00, rounded to two decimal places.
+
+Core Scoring Principle:
+Score at the clause level.
+
+The linguistic meaning of the clause is the primary source of the Satisfaction Score.
+The numerical Rating is a contextual baseline, not the final decision-maker.
+
+Do not assign an overly high score to a weak or factual clause only because the Rating is high.
+Do not assign an overly low score to a mildly negative clause only because the Rating is low.
+Do not erase or neutralize strong sentiment only because the Rating points in the opposite direction.
+
+Because clause-level scores will later be aggregated by Review_ID, each clause should preserve its own sentiment direction and reasonable sentiment intensity.
+
+In short:
+Rating should calibrate the score, not dominate it.
+
+General Scoring Logic:
+1. First, identify whether the clause is factual, positive, negative, or mixed.
+2. Then, identify the sentiment intensity: mild, moderate, strong, or extreme.
+3. Finally, use the Rating to slightly adjust the score within a reasonable range.
+
+Rating Baseline Principles:
+
+Rating 5:
+Start around 0.75 for clearly positive clauses.
+Increase toward 1.00 only for extreme praise, emotional attachment, memorable experience, strong recommendation, or clear intention to return.
+Use around 0.50 to 0.70 for mild, casual, or generic praise.
+Use 0.00 for purely factual/descriptive clauses.
+If the clause is negative, assign a negative score based on the actual severity of the clause, but do not over-penalize mild complaints.
+
+Rating 4:
+Start around 0.40 for mildly positive clauses.
+Increase toward 0.60 for clear positivity.
+Use around 0.20 to 0.35 for weak positivity or slightly mixed sentiment.
+Use 0.00 for purely factual/descriptive clauses.
+If the clause is negative, assign a negative score based on the actual severity of the clause.
+
+Rating 3:
+Start around 0.00.
+Use -0.20 to 0.20 for neutral, mixed, or mildly emotional clauses.
+Move beyond this range only when the clause itself clearly expresses stronger positive or negative sentiment.
+
+Rating 2:
+Start around -0.40 for clearly negative clauses.
+Increase toward -0.20 for mild dissatisfaction.
+Decrease toward -0.60 for strong complaints.
+Use 0.00 for purely factual/descriptive clauses.
+If the clause itself is positive, assign a mildly positive or less negative score depending on the language.
+
+Rating 1:
+Start around -0.75 for clearly negative clauses.
+Decrease toward -1.00 only for extreme anger, scam, unsafe experience, severe service failure, or absolute disappointment.
+Increase toward -0.40 or -0.50 if the clause is only mildly negative.
+Use 0.00 for purely factual/descriptive clauses.
+If the clause itself is positive, do not force it to be extremely negative only because the Rating is 1.
+
+Special Adjustment Rules:
+
+1. Fact-only / Descriptive Rule:
+If the clause only describes location, distance, time, price, opening hours, physical attributes, facilities, or factual information without emotional or evaluative sentiment, return 0.00 regardless of the Rating.
+
+Examples:
+- "10 minutes from the old town" → 0.00
+- "The beach is long" → 0.00
+- "The ticket costs 100,000 VND" → 0.00
+- "It opens at 8 AM" → 0.00
+- "There is a restaurant near the entrance" → 0.00
+
+However, do NOT classify a clause as fact-only if it contains emotional, experiential, or evaluative expressions.
+
+Evaluative expressions include:
+"charm", "beautiful", "amazing", "wonderful", "lovely", "pleasant", "memorable", "hard to leave", "worth it", "must visit", "recommend", "disappointing", "too crowded", "expensive", "boring", "bad", "terrible", "awful", "rude", "dirty", "unsafe", "waste of money".
+
+2. Rating Calibration Rule:
+The Rating should adjust the score moderately, not completely control it.
+
+A high Rating can make a positive clause slightly more positive, but it should not turn weak praise into extreme praise.
+A low Rating can make a negative clause slightly more negative, but it should not turn mild dissatisfaction into extreme dissatisfaction.
+If the clause and Rating conflict, prioritize the clause's linguistic sentiment and use the Rating only as context.
+
+Examples:
+- "nice place" with Rating 5 → around 0.55 to 0.70, not automatically 0.90
+- "beautiful and unforgettable experience" with Rating 5 → around 0.85 to 1.00
+- "a bit crowded" with Rating 5 → around -0.05 to -0.15
+- "a bit crowded" with Rating 1 → around -0.15 to -0.30, not automatically -0.80
+- "the service was terrible" with Rating 5 → around -0.60 to -0.80
+- "the service was terrible" with Rating 1 → around -0.80 to -1.00
+
+3. Contrastive Connector Rule:
+Do NOT treat contrastive words such as "but", "however", "yet", "although", or "though" as negative by themselves.
+
+When a clause contains a contrastive connector, evaluate the actual sentiment of the main evaluative part of the clause.
+
+If the phrase after "but", "however", or "yet" carries the main emotional meaning, prioritize that phrase.
+
+Positive contrast examples:
+- "but it had a charm that was hard to leave" with Rating 5 → 0.80 to 0.90
+- "but the view was amazing" with Rating 5 → 0.85 to 0.95
+- "but the staff were helpful" with Rating 4 → 0.45 to 0.60
+- "but it was still worth visiting" with Rating 5 → 0.70 to 0.85
+
+Negative contrast examples:
+- "but it was a bit crowded" with Rating 5 → -0.05 to -0.15
+- "but it was too crowded" with Rating 5 → -0.20 to -0.40
+- "but it was too crowded to enjoy" with Rating 5 → -0.40 to -0.60
+- "but the service was terrible" with Rating 5 → -0.60 to -0.80
+- "but the staff were rude" with Rating 5 → -0.60 to -0.80
+- "but it was a complete waste of money" with Rating 5 → -0.80 to -0.95
+
+4. Positive Attachment / Memorable Experience Rule:
+Phrases showing emotional attachment, desire to stay longer, willingness to return, strong enjoyment, or memorable experience should be treated as strong positive sentiment.
+
+Examples:
+- "hard to leave" → strong positive attachment
+- "wanted to stay longer" → strong positive attachment
+- "would come back again" → strong positive intention
+- "unforgettable experience" → extreme praise
+- "had a special charm" → strong positive experience
+- "one of the best experiences" → extreme praise
+
+For Rating 5, these clauses should usually score between 0.80 and 1.00.
+For Rating 4, these clauses should usually score between 0.60 and 0.80.
+For Rating 3 or lower, still assign a positive score if the clause itself is clearly positive, but avoid over-scoring unless the language is very strong.
+
+5. Positive Sentiment Intensity:
+Use positive words and phrases as guidance to estimate sentiment strength.
+The examples below are illustrative anchors, not fixed scoring rules.
+
+Do not assign a score based only on one keyword. Always consider the full clause, modifiers, context, and Rating.
+
+Mild positive expressions:
+Examples include "nice", "okay", "good", "fine", "decent", "pleasant".
+These usually suggest mild satisfaction, unless the surrounding context makes the sentiment stronger or weaker.
+
+Clear positive expressions:
+Examples include "beautiful", "lovely", "enjoyable", "worth visiting", "helpful", "clean", "interesting".
+These usually suggest clear satisfaction, especially when supported by a high Rating or additional positive context.
+
+Strong positive expressions:
+Examples include "amazing", "wonderful", "excellent", "perfect", "fantastic", "highly recommend", "must visit", "unforgettable".
+These usually suggest strong satisfaction, especially when the clause expresses emotional attachment, strong recommendation, or memorable experience.
+
+Scores above 0.85 should generally be reserved for clauses with strong emotional, experiential, or evaluative language, not for generic praise alone.
+
+6. Negative Sentiment Intensity:
+Use negative words and phrases as guidance to estimate dissatisfaction strength.
+The examples below are illustrative anchors, not fixed scoring rules.
+
+Do not assign a score based only on one keyword. Always consider the full clause, modifiers, context, and Rating.
+
+Mild negative expressions:
+Examples include "a bit crowded", "a little expensive", "some waiting", "not very special", "slightly disappointing".
+These usually suggest minor dissatisfaction or small inconvenience.
+
+Moderate negative expressions:
+Examples include "too crowded", "expensive", "long queue", "disappointing", "not worth it", "poor organization".
+These usually suggest a clear reduction in satisfaction, especially if the issue affects the tourist experience.
+
+Strong negative expressions:
+Examples include "terrible", "awful", "rude", "dirty", "unsafe", "scam", "waste of money", "never come back".
+These usually suggest serious dissatisfaction, strong complaint, or experience failure.
+
+Scores below -0.85 should generally be reserved for clauses with extreme negative language, serious service failure, safety concerns, scam-related complaints, or absolute rejection.
+
+Important:
+The word lists and score ranges are examples to help calibration. They are not rigid rules.
+Use them to understand approximate sentiment intensity, but make the final score based on the full meaning of the clause.
+
+7. Paradoxical Sentiment Rule:
+If the numerical Rating and clause sentiment conflict, do not force the score to follow the Rating.
+
+High Rating with negative clause:
+The score should still be negative if the clause is negative, but the magnitude should depend on the severity of the clause.
+
+Examples:
+- "it was a bit crowded" with Rating 5 → -0.05 to -0.15
+- "the ticket was quite expensive" with Rating 5 → -0.10 to -0.25
+- "we had to wait a little" with Rating 5 → -0.05 to -0.15
+- "it was too crowded to enjoy" with Rating 5 → -0.40 to -0.60
+- "the service was terrible" with Rating 5 → -0.60 to -0.80
+
+Low Rating with positive clause:
+The score should still be positive if the clause is positive, but avoid making it extremely positive unless the language is very strong.
+
+Examples:
+- "the view was nice" with Rating 1 → 0.20 to 0.40
+- "the staff were helpful" with Rating 2 → 0.25 to 0.45
+- "the beach was beautiful" with Rating 1 → 0.35 to 0.55
+- "the view was absolutely amazing" with Rating 1 → 0.55 to 0.75
+
+8. Mixed Sentiment Rule:
+If a clause contains both positive and negative sentiment, estimate which sentiment is dominant.
+
+If positive sentiment dominates, assign a positive score but reduce it according to the negative part.
+
+Example:
+- "The view was beautiful but the place was crowded" with Rating 5 → 0.35 to 0.60
+
+If negative sentiment dominates, assign a negative score even if there is some positive detail.
+
+Example:
+- "The view was nice but the service was terrible" with Rating 5 → -0.40 to -0.70
+
+If both sides are balanced, assign a score close to 0.
+
+Example:
+- "The place was beautiful but very crowded" with Rating 3 → -0.05 to 0.15
+
+9. Price-related Rule:
+A price mention alone is factual and should be scored 0.00.
+
+Examples:
+- "The ticket is 100,000 VND" → 0.00
+- "It costs 10 dollars" → 0.00
+
+But price evaluation is sentiment-bearing.
+
+Examples:
+- "The ticket was worth it" with Rating 5 → 0.65 to 0.85
+- "The ticket was expensive" with Rating 5 → -0.10 to -0.25
+- "It was a waste of money" with Rating 5 → -0.80 to -0.95
+
+If the clause is awkwardly translated, grammatically unclear, incomplete, or semantically ambiguous, avoid extreme scores. Assign a mild score based on the most likely sentiment. If the emotional meaning is unclear, assign a score close to 0.00.
+
+==================================================
+ANNOTATION TASK
+==================================================
+
+Now annotate the following feedback clause.
+
+Clause ID: {clause_id}
+Rating: {Rating}
+Clause: "{Clause}"
+
+Instructions:
+Based on the scoring rules above, calculate the Satisfaction Score for this clause.
+
+Return only one numeric score between -1.00 and 1.00, rounded to two decimal places.
+Do not provide explanation.
+Do not provide labels.
+Do not provide extra text.

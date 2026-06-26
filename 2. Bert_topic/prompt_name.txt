@@ -1,0 +1,242 @@
+Dựa vào file bertopic_representative_comments. json tôi đã đính kèm.
+Hãy giúp tôi đặt tên cho các topic bằng tiếng anh bao gồm: Indicator, Short_Name, Top_words và mô tả ngẵn về topic.
+Sau đó ghép 13 topic này (không tính topic -1) vào 4 Perceived Value: Functional value, Hedonic value, Epistemic value, Social relationship value.
+hi đặt tên topic hãy đặt tên 1 cách chung, không sử dụng các địa điểm cụ thể như:
+Nha Trang, Hanoi, HCM
+Top_words của từng topic như sau:
+[
+  {
+    "Topic":0,
+    "Comment_Rank":1,
+    "Top_Words":"to, and, you, not, for, place, if, as, can, visit",
+    "Comment":"If you go early or late in the day, you can easily visit Tamtao, visit the Heart of Shock, or climb the cave to see the view from the top, and if you go early or the end of the day, you can avoid crowds and experience that will be very relaxed and very honest."
+  },
+  {
+    "Topic":0,
+    "Comment_Rank":2,
+    "Top_Words":"to, and, you, not, for, place, if, as, can, visit",
+    "Comment":"but there is not much more to do in the area."
+  },
+  {
+    "Topic":0,
+    "Comment_Rank":3,
+    "Top_Words":"to, and, you, not, for, place, if, as, can, visit",
+    "Comment":"It wasn't very good at all, we were expecting more, it's hard to get, the short-tunnel, the person who should have given us information about the place spoke very badly English, and the conclusion is that we're not going to go again, and you don't want to hear it."
+  },
+  {
+    "Topic":1,
+    "Comment_Rank":1,
+    "Top_Words":"of, hanoi, ho, saigon, mausoleum, war, prison, history, visit, place",
+    "Comment":"The Central Post Office in Saigon \/ Ho Chi Minh City is an amazing historical building and a popular stop off for tours, indeed I visited as part of a cruise ship excursion to Vietnam and we had around 20 minutes here to pop in and take photos."
+  },
+  {
+    "Topic":1,
+    "Comment_Rank":2,
+    "Top_Words":"of, hanoi, ho, saigon, mausoleum, war, prison, history, visit, place",
+    "Comment":"The palace only offers views of rooms that were used not so long ago after the American war, so if you were looking for a more exciting\/ adventurous thing-to-do in Ho Chi Minh and learn more about the war, you’re better of going to the war remnants museum and just see this building from the outside."
+  },
+  {
+    "Topic":1,
+    "Comment_Rank":3,
+    "Top_Words":"of, hanoi, ho, saigon, mausoleum, war, prison, history, visit, place",
+    "Comment":"We are on a 23 day OAT tour of Vietnam.The prison is only one of three location in Hanoi worth visiting.The prison dates to 1896 when it was used to hold and torture anyone (local Vietnamese) who opposed the French government (Back then the French held power in Vietnam as THEIR colonial interest).Most of the prison was demolished in 1990 to make room for a high rise (Hanoi Towers)."
+  },
+  {
+    "Topic":2,
+    "Comment_Rank":1,
+    "Top_Words":"beach, the, water, clean, with, stream, rubbish, nice, very, waterfall",
+    "Comment":"With too many tourists and rubbish on the beach, not really the kind of most beautiful beach as shown in the photos."
+  },
+  {
+    "Topic":2,
+    "Comment_Rank":2,
+    "Top_Words":"beach, the, water, clean, with, stream, rubbish, nice, very, waterfall",
+    "Comment":"The beach is actually beautiful, the water is great"
+  },
+  {
+    "Topic":2,
+    "Comment_Rank":3,
+    "Top_Words":"beach, the, water, clean, with, stream, rubbish, nice, very, waterfall",
+    "Comment":"The beach is beautiful"
+  },
+  {
+    "Topic":3,
+    "Comment_Rank":1,
+    "Top_Words":"bridge, cable, dragon, fire, to, golden, hills, water, japanese, this",
+    "Comment":"but a bridge is just a bridge"
+  },
+  {
+    "Topic":3,
+    "Comment_Rank":2,
+    "Top_Words":"bridge, cable, dragon, fire, to, golden, hills, water, japanese, this",
+    "Comment":"A bridge is a bridge"
+  },
+  {
+    "Topic":3,
+    "Comment_Rank":3,
+    "Top_Words":"bridge, cable, dragon, fire, to, golden, hills, water, japanese, this",
+    "Comment":"The dragon bridge is just a bridge."
+  },
+  {
+    "Topic":4,
+    "Comment_Rank":1,
+    "Top_Words":"bay, to, boats, halong, cruise, island, market, floating, ride, tour",
+    "Comment":"The boat ride is beautiful."
+  },
+  {
+    "Topic":4,
+    "Comment_Rank":2,
+    "Top_Words":"bay, to, boats, halong, cruise, island, market, floating, ride, tour",
+    "Comment":"The \"Ha Long Bay of the land\" was very beautiful and the boat ride was very relaxing."
+  },
+  {
+    "Topic":4,
+    "Comment_Rank":3,
+    "Top_Words":"bay, to, boats, halong, cruise, island, market, floating, ride, tour",
+    "Comment":"Definitely recommend to do the Lan Ha Bay and Halong Bay tour on a boat."
+  },
+  {
+    "Topic":5,
+    "Comment_Rank":1,
+    "Top_Words":"park, rides, to, water, aquarium, theme, games, were, amusement, so",
+    "Comment":"but the water park is good."
+  },
+  {
+    "Topic":5,
+    "Comment_Rank":2,
+    "Top_Words":"park, rides, to, water, aquarium, theme, games, were, amusement, so",
+    "Comment":"Interesting theme park with water park, rides & a massive aquarium."
+  },
+  {
+    "Topic":5,
+    "Comment_Rank":3,
+    "Top_Words":"park, rides, to, water, aquarium, theme, games, were, amusement, so",
+    "Comment":"Many rides at the theme park as well as the water park were closed."
+  },
+  {
+    "Topic":6,
+    "Comment_Rank":1,
+    "Top_Words":"office, cathedral, notre, dame, postcards, send, mass, inside, beautiful, renovation",
+    "Comment":"That said, the Central Post Office is right next to the Notre Dame Cathedral and can be visited at the same time!"
+  },
+  {
+    "Topic":6,
+    "Comment_Rank":2,
+    "Top_Words":"office, cathedral, notre, dame, postcards, send, mass, inside, beautiful, renovation",
+    "Comment":"Next to it is the post office."
+  },
+  {
+    "Topic":6,
+    "Comment_Rank":3,
+    "Top_Words":"office, cathedral, notre, dame, postcards, send, mass, inside, beautiful, renovation",
+    "Comment":"All you can see is the pretty church and the post office next to it."
+  },
+  {
+    "Topic":7,
+    "Comment_Rank":1,
+    "Top_Words":"museum, war, palace, to, propaganda, was, interesting, exhibits, see, history",
+    "Comment":"Visit the War Remnants Museum first and only if you have time visit the palace."
+  },
+  {
+    "Topic":7,
+    "Comment_Rank":2,
+    "Top_Words":"museum, war, palace, to, propaganda, was, interesting, exhibits, see, history",
+    "Comment":"Very good museum to visit and learn about the war and history."
+  },
+  {
+    "Topic":7,
+    "Comment_Rank":3,
+    "Top_Words":"museum, war, palace, to, propaganda, was, interesting, exhibits, see, history",
+    "Comment":"But if you have to make a choice between one of these places- Independence palace and War museum, I would recommend War museum."
+  },
+  {
+    "Topic":8,
+    "Comment_Rank":1,
+    "Top_Words":"temple, caves, of, towers, marble, beautiful, mountain, pagodas, see, literature",
+    "Comment":"A temple is there inside cave."
+  },
+  {
+    "Topic":8,
+    "Comment_Rank":2,
+    "Top_Words":"temple, caves, of, towers, marble, beautiful, mountain, pagodas, see, literature",
+    "Comment":"Was it nice to visit the temple"
+  },
+  {
+    "Topic":8,
+    "Comment_Rank":3,
+    "Top_Words":"temple, caves, of, towers, marble, beautiful, mountain, pagodas, see, literature",
+    "Comment":"It's a temple!"
+  },
+  {
+    "Topic":9,
+    "Comment_Rank":1,
+    "Top_Words":"you, taxi, bus, parking, motorbike, scooter, us, bikes, road, at",
+    "Comment":"Asia, sidewalks are reserved for motorbike parking, so you need to get used to walking with the motorbike and car traffic on the road."
+  },
+  {
+    "Topic":9,
+    "Comment_Rank":2,
+    "Top_Words":"you, taxi, bus, parking, motorbike, scooter, us, bikes, road, at",
+    "Comment":"The problem is the sidewalks are used for parking of motorcycles which means people are forced to walk on the very busy streets, where the motorcycle rides and car drivers would as happily run you over as slow down to let you get out of the way."
+  },
+  {
+    "Topic":9,
+    "Comment_Rank":3,
+    "Top_Words":"you, taxi, bus, parking, motorbike, scooter, us, bikes, road, at",
+    "Comment":"If you go to this place by bike there is no parking lot and you have to pay and park before shops."
+  },
+  {
+    "Topic":10,
+    "Comment_Rank":1,
+    "Top_Words":"guide, was, to, very, you, us, he, tours, english, group",
+    "Comment":"Our guide took us here on a city tour."
+  },
+  {
+    "Topic":10,
+    "Comment_Rank":2,
+    "Top_Words":"guide, was, to, very, you, us, he, tours, english, group",
+    "Comment":"We did not do this with a tour guide, perhaps a tour guide would be better"
+  },
+  {
+    "Topic":10,
+    "Comment_Rank":3,
+    "Top_Words":"guide, was, to, very, you, us, he, tours, english, group",
+    "Comment":"Our tour guide was nice"
+  },
+  {
+    "Topic":11,
+    "Comment_Rank":1,
+    "Top_Words":"photos, take, the, picture, people, can, place, many, great, tourists",
+    "Comment":"It is great for taking photos."
+  },
+  {
+    "Topic":11,
+    "Comment_Rank":2,
+    "Top_Words":"photos, take, the, picture, people, can, place, many, great, tourists",
+    "Comment":"There are also people to take photos"
+  },
+  {
+    "Topic":11,
+    "Comment_Rank":3,
+    "Top_Words":"photos, take, the, picture, people, can, place, many, great, tourists",
+    "Comment":"It's just a place to take photos."
+  },
+  {
+    "Topic":12,
+    "Comment_Rank":1,
+    "Top_Words":"dunes, white, atv, mui, tour, up, ride, sunrise, rent, bikes",
+    "Comment":"If you really want to see the White Sand Dunes, we recommend to book a 4-in-1-tour (for 8 US$ p."
+  },
+  {
+    "Topic":12,
+    "Comment_Rank":2,
+    "Top_Words":"dunes, white, atv, mui, tour, up, ride, sunrise, rent, bikes",
+    "Comment":"So we booked this tour with a friend to see the sunrise at the white sand dunes because we saw amazing pictures like this Sahara desert (and 3 others places included in the tour) So we arrive around 4:30am at the bottom of the dunes and we had to pay 12$ more to go on a quad with the driver to go up to the dunes and then see the sunrise!"
+  },
+  {
+    "Topic":12,
+    "Comment_Rank":3,
+    "Top_Words":"dunes, white, atv, mui, tour, up, ride, sunrise, rent, bikes",
+    "Comment":"If you take a tour, they will take you to 3 or 4 places: white sand dunes, red sand dunes, fairy stream and Mui Ne fishing village."
+  }
+]
